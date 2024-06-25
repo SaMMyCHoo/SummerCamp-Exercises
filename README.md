@@ -1,1 +1,331 @@
-# -
+### 1. 有趣的跳跃
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/fbbd50fe-da1d-4e6b-9c8e-b4d2676b7e42)
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/cae58102-dfa9-45bc-a59f-834e6a9e49eb)
+考点：模拟，排序。时间复杂度要求很低，鉴定为签到题。
+思路：算出绝对差分后直接排序就行。
+```cpp
+#include<cstdio>
+#include<iostream>
+#include<algorithm>
+using namespace std;
+const int N=3005;
+int a[N], b[N];
+int main()
+{
+    int n, temp;
+    cin>>n;
+    for(int i=1;i<=n;++i)
+        cin>>a[i];
+    for(int i=1;i<n;++i)
+    {
+        temp = a[i+1]-a[i];
+        if(temp<0)
+            temp = -temp;
+        b[i] = temp;
+    }
+    sort(b+1, b+n);
+    for(int i=1;i<n;++i)
+    {
+        if(b[i]!=i)
+        {
+            cout<<"Not jolly";
+            return 0;
+        }
+    }
+    cout<<"Jolly";
+    return 0;
+}
+```
+
+### 2.玛雅历
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/15f9973c-9a61-4689-aa70-b0c60ef02e19)
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/df477227-af27-42bd-a19b-2188aa5877f0)
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/2f81535b-55ae-4db1-bc04-94dfd7ea85ee)
+
+纯模拟题，题目阅读量大，考察点为阅读理解。
+思路：第一个日历是正常的月份，第二个日历是天干地支类。直接算出总天数再转换即可。
+```cpp
+#include<cstdio>
+#include<iostream>
+#include<string>
+using namespace std;
+
+string Haab[19]={
+    "pop", "no", "zip", "zotz", "tzec", 
+    "xul", "yoxkin", "mol", "chen", "yax", 
+    "zac", "ceh", "mac", "kankin", "muan",
+    "pax", "koyab", "cumhu", "uayet"
+    };
+
+string Holly[20]={
+    "imix", "ik", "akbal", "kan", "chicchan", "cimi", "manik",
+    "lamat", "muluk", "ok", "chuen", "eb", "ben", "ix", "mem",
+    "cib", "caban", "eznab", "canac", "ahau"
+    };
+
+
+void convert(string haab,int y)
+{
+    int len = haab.size();
+    cout<<len<<endl;
+    int temp=0, now = 0, dat, mon, yea;
+    string tmp = "";
+    while (now<len)
+    {
+        if(haab[now]=='.')
+        {
+            temp = 0;
+            for(int i=0;i<now;++i)
+                temp = temp * 10 + haab[i] - '0';
+            dat = temp;
+        }
+        if(now==len-1)
+        {
+            int j = now;
+            while(haab[j]!='.')
+                tmp += haab[j--];
+            string ttmp="";
+            for(int i=tmp.length()-1;i>=0;--i)
+                ttmp+=tmp[i];
+            tmp=ttmp;
+            // cout<<tmp<<endl;
+            for(int i=0;i<19;++i)
+            {
+                if(Haab[i]==tmp)
+                {
+                    mon=i;
+                    break;
+                }
+            }
+            break;
+        }
+        now++;
+    }
+    yea = y;
+    // cout<<dat<<' '<<mon<<' '<<yea<<endl;
+    int tot = yea * 365 + mon * 20 + dat + 1;
+    cout<<tot<<endl;
+    int rd, rm, ry;
+    ry = tot/260;
+    rd = tot%13;
+    rm = tot%20-1;
+    if(rd==0)
+        rd=13;
+
+    cout<<rd<<" "<<Holly[rm]<<" "<<ry<<endl;
+}
+
+int main()
+{
+    int n, y;
+    string temp;
+    cin>>n;
+    cout<<n<<endl;
+    for(int i=1;i<=n;++i)
+    {
+        cin>>temp>>y;
+        convert(temp,y);
+    }
+    return 0;
+}
+```
+
+### 3.走迷宫
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/0bd897b3-2a34-49ca-8865-6cedcc64e596)
+
+
+广度优先搜索模板题，签到即可。仍然要注意字符的读入。
+```cpp
+#include<cstdio>
+#include<iostream>
+#include<string>
+#include<queue>
+using namespace std;
+const int N = 50;
+int map[N][N], dis[N][N];
+int r,c;
+struct node
+{
+    int x, y;
+};
+
+queue<node> q;
+
+int dx[4] = {1, 0, -1, 0};
+int dy[4] = {0, 1, 0, -1};
+
+void bfs(node s)
+{
+    dis[s.x][s.y] = 1;
+    q.push(s);
+    while(!q.empty())
+    {
+        node tmp = q.front();
+        q.pop();
+        for(int i = 0; i < 4; ++i)
+        {
+            int nx = tmp.x + dx[i];
+            int ny = tmp.y + dy[i];
+            if(nx < 1 || nx > r || ny < 1 || ny > c || !map[nx][ny] || dis[nx][ny])
+                continue;
+            dis[nx][ny] = dis[tmp.x][tmp.y] + 1;
+            node nxt;
+            nxt.x = nx, nxt.y = ny;
+            q.push(nxt);
+        }
+    }
+}
+int main()
+{
+    cin>>r>>c;
+    string temp;
+    for(int i = 1; i <= r; ++i)
+    {
+        cin>>temp;
+        for(int j = 0; j < c; ++j)
+        {
+            char now = temp[j];
+            if(now == '.')
+                map[i][j + 1] = 1;
+            else
+                map[i][j + 1] = 0;
+        }
+    }
+    node s;
+    s.x = 1, s.y = 1;
+    bfs(s);
+    cout<<dis[r][c];
+    return 0;
+}
+```
+### 4.最大上升子序列和
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/e79bd8b4-f470-4c03-ac02-85f67f541bcd)
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/10c6e5d9-be96-41cc-b840-d46addfeed7f)
+标准的dp问题，N^2的解法并不难想。
+配合下标的离散化即可优化到NlogN。
+涉及到的知识点：树状数组，离散化，线性dp
+```cpp
+#include<cstdio>
+#include<iostream>
+#include<algorithm>
+using namespace std;
+const int N = 1e3+5;
+int n, a[N];
+int num[N], tmp[N];
+int find(int x)
+{
+    int res = 0;
+    int l = 1, m, r = n;
+    while(l <= r)
+    {
+        m = (l + r) >> 1;
+        res = m;
+        if(tmp[m] == x)
+            break;
+        if(tmp[m] > x)
+            r = m - 1;
+        else   
+            l = m + 1;
+    }
+    return res;
+}
+
+int tr[N]; 
+int lowbit(int x)
+{
+    return ((x ^ (x - 1)) + 1) >> 1; 
+}
+
+void update(int a, int x)// 把下标a的最大值上调为x（单向）
+{
+    int now = a;
+    while(now <= n)
+    {
+        tr[now] = max(tr[now], x);
+        now += lowbit(now);
+    }
+}
+
+int check(int a)
+{
+    int res = 0, now = a;
+    while(now)
+    {
+        res = max(res, tr[now]);
+        now -= lowbit(now);
+    }
+    return res;
+}
+
+int f[N];
+int main()
+{
+    cin>>n;
+    for(int i = 1; i <= n; ++i)
+    {
+        cin >> a[i];
+        tmp[i] = a[i];
+    }
+    sort(tmp + 1, tmp + n + 1);
+    for(int i = 1; i <= n; ++i)
+        num[i] = find(a[i]);
+    int ans = 0;
+    for(int i = 1; i <= n; ++i)
+    {
+        int now = check(num[i]);
+        f[i] = now + a[i];
+        update(num[i], f[i]);
+        ans = max(ans, f[i]);
+    }
+    cout<<ans;
+    return 0;
+}
+```
+
+### 5.Yogurt Factory
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/2509178e-1b1e-4a0e-beee-e63cbb15717d)
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/e91d7951-9ac7-40e9-b676-13bf9ceed3dc)
+
+读懂题意后就知道是简单的贪心问题。由于酸奶和存储都没有上限，同时也不要求在线回答问题，因此我们只需要一次考虑每一周的供应。
+
+对于第i周的供应需求，酸奶有两种来源：就当周生产的成本$C_i$，或者是之前某一周的成本$C_j + (i - j) * S$。
+
+因此，只需要快速找出这些选项中更低的那个即可。我们整理一下表达式：$\min_{1}^{i} C_j + (i - j) * S$，等价于$\min_{1}^{i} C_j - j * S$，从而只需要维护一个静态的数组$C_j - j * S$前缀最小值即可（注意需要保留下标），因此时间复杂度是$O(n)$。
+
+注意longlong。
+```cpp
+#include<cstdio>
+#include<iostream>
+using namespace std;
+#define LL long long
+const int N = 1e4+5;
+int n, s, c[N], y[N];
+LL ans, now;
+int main()
+{
+    cin>>n>>s;
+    for(int i = 1; i <= n; ++i)
+        cin >> c[i] >> y[i];
+    ans = y[1] * c[1];
+    now = 1;
+    for(int i = 2; i <= n; ++i)
+    {
+        int temp = c[now] - now * s;
+        if ((c[i] - i * s) < temp)
+        {
+            temp = c[i] - i * s;
+            now = i;
+        }
+        ans += y[i] * (temp + i * s);
+    }
+    cout<<ans;
+    return 0;
+}
+```
+
+### 6.Wireless Network
+
+
+并查集问题，直接用并查集应该是可以直接完成。难点是在于快速定位到修复点附近的已修复电脑。当然，由于只有1000台，直接遍历是可行的。
+
+是否有更好的做法？一个简单的优化是提前预处理好拓扑关系，这样在真的连接的时候就不需要再遍历了。有效但是仍然是$O(N^2)$的复杂度。
