@@ -325,7 +325,9 @@ int main()
 ```
 
 ### 6.Wireless Network
-
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/20e36bce-8bc9-4b24-bc2c-3861afd8783d)
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/8144ada7-2003-4011-ad86-7b2b380c2f86)
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/f9655ef4-1f63-4ffc-b40d-17282f461923)
 
 并查集问题，直接用并查集应该是可以直接完成。难点是在于快速定位到修复点附近的已修复电脑。当然，由于只有1000台，直接遍历是可行的。
 
