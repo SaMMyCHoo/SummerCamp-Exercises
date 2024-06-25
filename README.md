@@ -1,6 +1,7 @@
 ### 1. 有趣的跳跃
 ![image](https://github.com/SaMMyCHoo/-/assets/116826455/fbbd50fe-da1d-4e6b-9c8e-b4d2676b7e42)
 ![image](https://github.com/SaMMyCHoo/-/assets/116826455/cae58102-dfa9-45bc-a59f-834e6a9e49eb)
+
 考点：模拟，排序。时间复杂度要求很低，鉴定为签到题。
 思路：算出绝对差分后直接排序就行。
 ```cpp
@@ -202,8 +203,11 @@ int main()
 ### 4.最大上升子序列和
 ![image](https://github.com/SaMMyCHoo/-/assets/116826455/0bd897b3-2a34-49ca-8865-6cedcc64e596)
 ![image](https://github.com/SaMMyCHoo/-/assets/116826455/10c6e5d9-be96-41cc-b840-d46addfeed7f)
+
 标准的dp问题，N^2的解法并不难想。
+
 配合下标的离散化即可优化到NlogN。
+
 涉及到的知识点：树状数组，离散化，线性dp
 ```cpp
 #include<cstdio>
