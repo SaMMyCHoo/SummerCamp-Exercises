@@ -131,7 +131,8 @@ int main()
 ```
 
 ### 3.走迷宫
-![image](https://github.com/SaMMyCHoo/-/assets/116826455/0bd897b3-2a34-49ca-8865-6cedcc64e596)
+
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/e79bd8b4-f470-4c03-ac02-85f67f541bcd)
 
 
 广度优先搜索模板题，签到即可。仍然要注意字符的读入。
@@ -199,7 +200,7 @@ int main()
 }
 ```
 ### 4.最大上升子序列和
-![image](https://github.com/SaMMyCHoo/-/assets/116826455/e79bd8b4-f470-4c03-ac02-85f67f541bcd)
+![image](https://github.com/SaMMyCHoo/-/assets/116826455/0bd897b3-2a34-49ca-8865-6cedcc64e596)
 ![image](https://github.com/SaMMyCHoo/-/assets/116826455/10c6e5d9-be96-41cc-b840-d46addfeed7f)
 标准的dp问题，N^2的解法并不难想。
 配合下标的离散化即可优化到NlogN。
