@@ -336,3 +336,89 @@ int main()
 并查集问题，直接用并查集应该是可以直接完成。难点是在于快速定位到修复点附近的已修复电脑。当然，由于只有1000台，直接遍历是可行的。
 
 是否有更好的做法？一个简单的优化是提前预处理好拓扑关系，这样在真的连接的时候就不需要再遍历了。有效但是仍然是$O(N^2)$的复杂度。
+
+暂时没想到更快速的方法，这里就用vector写一个好了。
+
+```cpp
+#include<cstdio>
+#include<iostream>
+#include<vector>
+using namespace std;
+#define LL long long
+const int N = 1e3 + 5;
+int X[N], Y[N];
+
+vector<int> neighbors[N];
+
+int to[N]; //并查集
+
+int find(int x)
+{
+    if(x != to[x])
+        to[x] = find(to[x]);
+    return to[x];
+}
+
+bool check(int x, int y)
+{
+    x = find(x);
+    y = find(y);
+    return x == y;
+}
+
+void merge(int x, int y)
+{
+    x = find(x);
+    y = find(y);
+    to[x] = y;
+}
+
+int main()
+{
+    int n, d;
+    cin >> n >> d;
+    for(int i = 1; i <= n; ++i)
+    {
+        to[i] = -1;//初始化并查集
+        cin >> X[i] >> Y[i];
+    }
+
+    for(int i = 1; i <= n; ++i)
+        for(int j = i + 1; j <= n; ++j)
+        {
+            LL dis = (X[i] - X[j]) * 1ll * (X[i] - X[j]) + (Y[i] - Y[j]) * 1ll *(Y[i] - Y[j]);
+            if(dis <= d * 1ll * d)
+            {
+                neighbors[i].push_back(j);
+                neighbors[j].push_back(i);
+            }
+        }
+
+    char temp;
+    while(cin >> temp)
+    {
+        if(temp == 'O')
+        {
+            int p;
+            cin >> p;
+            to[p] = p;
+            for(int i = 0; i < neighbors[p].size(); ++i)
+                if(to[neighbors[p][i]] != -1)
+                    merge(p, neighbors[p][i]);
+        }
+        else
+        {
+            int p, q;
+            cin >> p >> q;
+            if(to[p] == -1 || to[q] == -1)
+                cout<<"FA1L"<<endl;
+            if(check(p, q))
+                cout<<"SUCCESS"<<endl;
+            else
+                cout<<"FA1L"<<endl;
+
+        }
+    }
+    return 0;
+}
+```
