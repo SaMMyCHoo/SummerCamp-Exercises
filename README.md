@@ -506,7 +506,7 @@ bool isdigit(char x)
 int main()
 {
     string s;
-    cin>>s;
+    getline(cin, s);
     int al = 0, bl = 0, cl = 0, ar = 0, br = 0, cr = 0, a, b, c;
     int eq;
     for(int i = 0; i < s.length(); ++i)
