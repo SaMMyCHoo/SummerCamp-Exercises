@@ -488,6 +488,157 @@ int main()
 
 ### 2.二次方程计算器
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/14f63241-e1ed-4781-8cc5-b0dfa75788cd)
+
 模拟题，难点在于读入字符串后整理方程的形式。
+
+此处假设不会出现二次计算的系数，也就是不会出现2*3x这样的项。（不然鬼才做咧）
 ```cpp
+#include<cstdio>
+#include<iostream>
+#include<string>
+#include<iomanip>
+#include<cmath>
+using namespace std;
+bool isdigit(char x)
+{
+    return (('0' <= x) && ('9' >= x));
+}
+int main()
+{
+    string s;
+    cin>>s;
+    int al = 0, bl = 0, cl = 0, ar = 0, br = 0, cr = 0, a, b, c;
+    int eq;
+    for(int i = 0; i < s.length(); ++i)
+        if(s[i] == '=')
+        {
+            eq = i;
+            break;
+        }
+    //我们先找到等号，然后依次在两边确定各个项的系数。
+    int now = 0, temp = 0, sign = 1;
+    while(now < eq)
+    {   
+        if(isdigit(s[now]))
+        {
+            temp = temp * 10 + (s[now] - '0');
+            ++now;
+        }
+        else 
+        {
+            if(s[now] == '-')
+            {
+                cl += temp * sign;
+                sign = -1;
+                temp = 0;
+                ++now;
+            }
+            else if(s[now] == 'x')
+            {
+                if(!temp)
+                    temp = 1;
+                if(s[now + 1] == '^')
+                {
+                    al += temp * sign;
+                    sign = 1;
+                    temp = 0;
+                    now += 3;
+                }
+                else
+                {
+                    bl += temp * sign;
+                    sign = 1;
+                    temp = 0;
+                    ++now;
+                }
+            }   
+            else
+            {
+                cl += temp * sign;
+                sign = 1;
+                temp = 0;
+                ++now;
+            }
+        }
+    }
+    cl += temp * sign;
+    now = eq + 1, temp = 0, sign = 1;
+    while(now < s.length())
+    {   
+        if(isdigit(s[now]))
+        {
+            temp = temp * 10 + (s[now] - '0');
+            ++now;
+        }
+        else 
+        {
+            if(s[now] == '-')
+            {
+                cr += temp * sign;
+                sign = -1;
+                temp = 0;
+                ++now;
+            }
+            else if(s[now] == 'x')
+            {
+                if(!temp)
+                    temp = 1;
+                if(s[now + 1] == '^')
+                {
+                    ar += temp * sign;
+                    sign = 1;
+                    temp = 0;
+                    now += 3;
+                }
+                else
+                {
+                    br += temp * sign;
+                    sign = 1;
+                    temp = 0;
+                    ++now;
+                }
+            }   
+            else
+            {
+                cr += temp * sign;
+                sign = 1;
+                temp = 0;
+                ++now;
+            }
+        }
+    }
+    cr += temp * sign;
+    // cout<<al<<" "<<bl<<" "<<cl<<" "<<endl;
+    // cout<<ar<<" "<<br<<" "<<cr<<" "<<endl;
+    a = al - ar;
+    b = bl - br;
+    c = cl - cr;
+    if(!a)
+    {
+        if(!b)
+        {
+            if(!c)
+                cout<<"All Solution!";
+            else
+                cout<<"No Solution!";
+        }
+        else
+            cout<<fixed<<setprecision(2)<<((double)c / b);
+    }
+    else
+    {
+        int delta = b * b - 4 * a * c;
+        if(delta < 0)
+            cout<<"No Solution!";
+        else
+        {
+            cout<<fixed<<setprecision(2)<<((double)(-b + sqrt(delta)) / (2.0 * a));
+            cout<<" ";
+            cout<<fixed<<setprecision(2)<<((double)(-b - sqrt(delta)) / (2.0 * a));
+        }
+
+    }
+    return 0;
+}
 ```
+（注：其实也可以直接把这个字符串转化为表达式然后用二分法求解，但是个人感觉难度并不亚于整理系数，因为这是C++不是Python）
