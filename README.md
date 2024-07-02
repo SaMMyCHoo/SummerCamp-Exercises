@@ -769,3 +769,106 @@ int main()
     return 0;
 }
 ```
+### 5.Old Bill
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/cc5c0902-f7ba-4b51-bd66-ebe6ab6b2504)
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/a9c1510e-c897-4eca-8f52-3cacce11a297)
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/816e1d8c-3e58-4bad-8cbe-b1ec988790a6)
+
+讲道理这题本身是很简单的，直接枚举最高位的1~9以及低位的0~9即可。恶心的点依旧是不指定个数的输入组。纯模拟题，直接挂代码了。
+```cpp
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int n;
+int x, y, z;
+
+int main()
+{
+    while(cin>>n)
+    {
+        bool flag = 1;
+        cin>>x>>y>>z;
+        for(int i = 9; i >= 1; --i)
+        {
+            if(!flag)
+                break;
+            for(int j = 9; j >= 0; --j)
+            {
+                int now = i * 10000 + x * 1000 + y * 100 + z * 10 + j;
+                if(now % n == 0)
+                {
+                    cout<<i<<" "<<j<<" "<< now / n << endl;
+                    flag = 0;
+                    break;
+                }
+            }
+        }
+        if(flag)
+            cout<<0<<endl;
+    }
+    return 0;
+}
+```
+
+### 6.Fibonacci
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/c15f14c2-e860-4a17-a29d-62e854beb8f5)
+
+签到题，甚至n都只有30。
+
+但是我们怎么能满足于30呢，毕竟直接递归的复杂度是O(2^N)，即使考虑记忆化搜索也是O(N)。我们可以用矩阵快速幂优化到O(logN)。
+
+```cpp
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int n;
+struct matrix
+{
+    int a, b, c, d;
+
+    matrix()
+    {
+        a = 1;
+        b = 1;
+        c = 1;
+        d = 0;
+    }
+};
+matrix operator*(const matrix &x, const matrix &y)
+{
+    matrix res;
+    res.a = x.a * y.a + x.b * y.c;
+    res.b = x.a * y.b + x.b * y.d;
+    res.c = x.c * y.a + x.d * y.c;
+    res.d = x.c * y.b + x.d * y.d;
+    return res;
+}
+int main()
+{
+    cin>>n;
+    if(n == 1 || n == 2)
+    {
+        cout<<1<<endl;
+        return 0;
+    }
+    int now = n - 2;
+    matrix res;
+    matrix s;
+    res.a = 1;
+    res.b = 0;
+    res.c = 0;
+    res.d = 1;
+    while(now)
+    {
+        if(now & 1)
+            res = res * s;
+        s = s * s;
+        now >>= 1;
+    }
+    cout<<res.a + res.b;
+    return 0;
+}
+```
+### 7.数字反转
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/5a6da7b6-a0a3-4a64-a47b-7ea7c1fcdf33)
+这题就略了，我也没想到什么要注意的点，就是个数字翻转而已，甚至高精度都用不上，无限制输入前面也涉及到了。
