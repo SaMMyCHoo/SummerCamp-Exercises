@@ -871,4 +871,5 @@ int main()
 ```
 ### 7.数字反转
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/5a6da7b6-a0a3-4a64-a47b-7ea7c1fcdf33)
+
 这题就略了，我也没想到什么要注意的点，就是个数字翻转而已，甚至高精度都用不上，无限制输入前面也涉及到了。
