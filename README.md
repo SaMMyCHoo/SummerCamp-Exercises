@@ -1,3 +1,5 @@
+## 套题1（PJU）
+
 ### 1. 有趣的跳跃
 ![image](https://github.com/SaMMyCHoo/-/assets/116826455/fbbd50fe-da1d-4e6b-9c8e-b4d2676b7e42)
 ![image](https://github.com/SaMMyCHoo/-/assets/116826455/cae58102-dfa9-45bc-a59f-834e6a9e49eb)
@@ -422,3 +424,65 @@ int main()
     return 0;
 }
 ```
+## 套题2（SJTU）
+### 1.String Match
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/1a26e507-0d46-454c-9be2-440e564a828e)
+
+标准的字符串匹配问题，观察数据范围后得知需要$O(N)$完成。有两种写法，分别是KMP和哈希。KMP难度过高，所以我们选择哈希吧（）
+
+哈希的问题在于，有一定随机性，脸黑的话容易爆。所以要选择合适的参数，以及最好双哈希保险。
+
+```cpp
+#include<cstdio>
+#include<iostream>
+#include<string>
+using namespace std;
+#define LL long long
+int Hash(LL b, LL m, string s1, string s2)
+{
+    int ans = 0;
+    LL res = 0;
+    //计算s2的哈希值
+    for(int i = 0; i < s2.length(); ++i)
+    {
+        res = (res * b) % m;
+        res = (res + (int)(s2[i])) % m;
+    }
+
+    // cout<<res<<endl;
+
+    LL tmp = 0, now = 1;
+    for(int i = 0; i < s2.length(); ++i)
+    {   
+        if(i)
+           now = (now * b) % m;
+        tmp = (tmp * b) % m;
+        tmp = (tmp + (int)(s1[i])) % m;
+    }
+    // cout<<tmp<<endl;
+    for(int i = 0; i < s1.length() - s2.length(); ++i)
+    {
+        if(tmp == res)
+            ++ans;
+        LL temp = (now * s1[i]) % m;
+        tmp = (tmp - temp + m) % m;
+        tmp = (tmp * b) % m;
+        tmp = (tmp + (int)(s1[i + s2.length()])) % m;
+        // cout<<tmp<<endl;
+    }
+    if(tmp == res)
+        ++ans;
+    return ans;
+}   
+
+int main()
+{
+    string S1, S2;
+    cin>>S1>>S2;
+    int ans1 = Hash(19, 19260817, S1, S2);
+    int ans2 = Hash(23, 19260817, S1, S2);
+    cout<<min(ans1, ans2);
+    return 0;
+}
+```
+
