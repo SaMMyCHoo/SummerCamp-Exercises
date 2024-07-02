@@ -642,3 +642,71 @@ int main()
 }
 ```
 （注：其实也可以直接把这个字符串转化为表达式然后用二分法求解，但是个人感觉难度并不亚于整理系数，因为这是C++不是Python）
+### 3.WERTYU
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/63ccb5e7-fd4d-4885-a6a6-7520e6a51441)
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/48560cb3-3398-445c-a441-e610c7c3158b)
+
+你交怎么这么喜欢考字符串的题目（）
+
+这题没啥好说的，只需要搞清楚映射的定义域和值域就结束了。
+```cpp
+#include <cstdio>
+#include <iostream>
+#include <string>
+#include <map>
+
+using namespace std;
+
+map<string, string> Pmap;
+
+int main()
+{
+    Pmap["W"] = "Q";
+    Pmap["S"] = "A";
+    Pmap["X"] = "Z";
+    Pmap["E"] = "W";
+    Pmap["D"] = "S";
+    Pmap["C"] = "X";
+    Pmap["R"] = "E";
+    Pmap["F"] = "D";
+    Pmap["V"] = "C";
+    Pmap["T"] = "R";
+    Pmap["G"] = "F";
+    Pmap["B"] = "V";
+    Pmap["Y"] = "T";
+    Pmap["H"] = "G";
+    Pmap["N"] = "B";
+    Pmap["U"] = "Y";
+    Pmap["J"] = "H";
+    Pmap["M"] = "N";
+    Pmap["I"] = "U";
+    Pmap["K"] = "J";
+    Pmap[","] = "M";
+    Pmap["O"] = "I";
+    Pmap["L"] = "K";
+    Pmap["."] = ",";
+    Pmap["P"] = "O";
+    Pmap[";"] = "L";
+    Pmap["/"] = ".";
+    Pmap["["] = "P";
+    Pmap["'"] = ";";
+
+    string s;
+    getline(cin, s);
+    for (int i = 0; i < s.length(); ++i)
+    {
+        string ch(1, s[i]); // 将字符转换为单字符字符串
+        if (Pmap.find(ch) != Pmap.end())
+        {
+            cout << Pmap[ch];
+        }
+        else
+        {
+            cout << s[i];
+        }
+    }
+
+    return 0;
+}
+```
+
