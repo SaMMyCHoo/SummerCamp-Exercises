@@ -486,3 +486,8 @@ int main()
 }
 ```
 
+### 2.二次方程计算器
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/14f63241-e1ed-4781-8cc5-b0dfa75788cd)
+模拟题，难点在于读入字符串后整理方程的形式。
+```cpp
+```
