@@ -710,3 +710,62 @@ int main()
 }
 ```
 
+### 4.Simple Sorting
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/d25ffbde-e69f-4999-a552-cbccc448a461)
+
+排序去重algorithm里甚至都有内置函数。不过我们还是手写一个归并排序+手动去重吧。
+
+```cpp
+#include <cstdio>
+#include <iostream>
+using namespace std;
+const int N = 1e3 + 5;
+int n, a[N], temp[N];
+int ans[N];
+
+void mergesort(int l, int r)
+{
+    if(l == r)
+        return;
+    int m = (l + r) >> 1;
+    mergesort(l, m);
+    mergesort(m + 1, r);
+    int ls = l, rs = m + 1, now = l;
+    while(now <= r)
+    {
+        if(ls <= m && rs <= r)
+        {
+            if(a[ls] > a[rs])
+                temp[now++] = a[rs++];
+            else
+                temp[now++] = a[ls++];
+        }
+        else if(ls <= m)
+            temp[now++] = a[ls++];
+        else
+            temp[now++] = a[rs++];
+    }
+    for(int i = l; i <= r; ++i)
+        a[i] = temp[i];
+    return;
+}
+
+int main()
+{
+    cin>>n;
+    for(int i = 1; i <= n; ++i)
+        cin>>a[i];
+    mergesort(1, n);
+    cout<<a[1];
+    int now = 2;
+    while(now <= n)
+    {
+        while(a[now] == a[now - 1] && now <= n)
+            ++now;
+        if(now > n)
+            break;
+        cout<<" "<<a[now++];
+    }
+    return 0;
+}
+```
