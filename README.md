@@ -1236,25 +1236,17 @@ dp问题。f[i]表示覆盖到第i天的最小费用。那么转移手段有3种
 
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/ebbb8516-67b6-46bb-9e4f-afa67a613198)
 
-
-```cpp
-//your code here.
-```
+A最长12，直接枚举硬来就行。（注意剪枝优化搜索策略）
 
 ### 15.最长连续递增序列
 
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/458ed09c-5889-44c5-8ac2-5833b2b0d746)
 
-```cpp
-//your code here.
-```
+略。
 
 ### 16.
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/7e8ec98b-6820-42be-b762-250ee216b17e)
 
-```cpp
-//your code here.
-```
 
 ### 17.
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/8d3bc5e9-1feb-4483-aa0b-90c90ffae92c)
