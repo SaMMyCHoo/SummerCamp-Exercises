@@ -1,4 +1,4 @@
-![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/268e32bc-7f7c-4504-8b57-4a0ce9a1f3c1)## 套题1（PJU）
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/49815ff8-0175-417a-9522-d719f8d3c407)![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/268e32bc-7f7c-4504-8b57-4a0ce9a1f3c1)## 套题1（PJU）
 
 ### 1. 有趣的跳跃
 ![image](https://github.com/SaMMyCHoo/-/assets/116826455/fbbd50fe-da1d-4e6b-9c8e-b4d2676b7e42)
@@ -1199,18 +1199,22 @@ int main()
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/57635029-e87a-475e-9ba4-5d1d8496ea38)
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/d6520914-57e6-4e9f-84b6-ad5f764c9f00)
 
-Floyd算法经典题目，配合floyd的中间过程输出答案即可。
-```cpp
-//your code here.
-```
+最短路模板题，参考之前的dijkstra算法即可。
+
+难点在于边权一定会爆，此时可以选择高精度硬做。
+
+但是分析知道任意一条路径，和别的路径比大小是只需要其中最大的2的幂次的。（这是2的幂次决定的，因为下2^0加到2^(n-1)也小于2^n）
+
+由于路径长度不重复，所以合并的时候取max即可。
+
+可以通过这个方式找到最短路径的具体点，然后再计算真正的最短路就好。
+
+来不及敲代码了，先把思路都过一遍。
 
 ### 10.Coindence
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/bd9d0a6c-2bb3-4d9d-b7e8-deeca84597cf)
 
 DP问题，f(i)(j)表示两个串分别考虑到i,j的最长公共序列。转移方程就很简单了，O(n^2)拿下。
-```cpp
-//your code here.
-```
 
 ### 11.整除问题
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/57953395-1fb2-4a67-b78c-6971ebaca22a)
@@ -1234,6 +1238,51 @@ DP问题，f(i)(j)表示两个串分别考虑到i,j的最长公共序列。转�
 
 ### 14.正方形数组的数目
 
+```cpp
+//your code here.
+```
+
+### 15.最长连续递增序列
+
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/458ed09c-5889-44c5-8ac2-5833b2b0d746)
+
+```cpp
+//your code here.
+```
+
+### 16.
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/7e8ec98b-6820-42be-b762-250ee216b17e)
+
+```cpp
+//your code here.
+```
+
+### 17.
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/8d3bc5e9-1feb-4483-aa0b-90c90ffae92c)
+
+```cpp
+//your code here.
+```
+
+### 18.
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/4a7603f9-6a7d-4ea6-8532-f67e2933934a)
+
+略
+
+### 19.
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/9801d26b-6c3d-4aa5-b16d-f7fbcdbe241c)
+
+和前面一个题是一样的，略
+
+### 20.
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/5851fbcb-3bfa-433a-8bd0-5ebfdaabcf41)
+
+最简单的数学题，统计2和5的因子数就行
+
+### 21.
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/5521238e-fc6c-4b73-bf89-a35ed1e7ee40)
+
+用语法树递归做就行，注意优先级，没有括号所以先找加减法就行
 
 
 
