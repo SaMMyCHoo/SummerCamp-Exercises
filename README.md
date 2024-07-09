@@ -1005,6 +1005,19 @@ int main()
 }
 ```
 
+### 5.
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/bc42b89d-7b09-461d-adca-052f8f4f95d4)
+
+序列翻转，略
+
+### 6.棋盘游戏
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/584fcbe9-dd2b-4036-82c0-ea69cf4a110b)
+
+用记忆化搜索的方式可以在O(4N^2)的复杂度内搞定。记f(i,j,s)代表以状态s到达坐标(i,j)的最小代价，-1表示不可能以状态s到达i,j。
+
+那么转移方程就自然是枚举上下左右四个方向，四种状态共16种可能性。理论上每个i,j只需要算4个值，因此时间复杂度是O(4*n*n)，也是就O(N^2)。
+
+代码并不难，这里就不贴了。
 
 
 最小生成树，最短路
