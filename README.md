@@ -945,6 +945,64 @@ int main()
 
 当然，这个题有一点恶心的地方是，需要手动检查输入是否合法。由于C++无法像python那样先读进来再检查类型，因此我们只能先全部以string的形式读入，然后再想办法处理。
 ```cpp
+#include<cstdio>
+#include<iostream>
+using namespace std;
+const int N=1e5+5;
+string temp;
+int nums[N];
+bool f[N];
+bool check(string s)
+{
+    for(int i=0;i<s.length();++i)
+    {
+        if('0'<=s[i]&&s[i]<='9')
+            continue;
+        else
+            return false;
+    }
+    return true;
+}
+int conv(string s)
+{
+    int res=0;
+    for(int i=0;i<s.length();++i)
+        res=res*10+(s[i]-'0');
+    return res;
+}
+int main()
+{
+    int n=0;
+    while(cin>>temp)
+    {
+        if(check(temp))
+           nums[++n]=conv(temp);
+        else
+        {
+            cout<<"ERROR";
+            return 0;
+        }
+    }
+    f[0]=true;
+    int sum=0;
+    for(int i=1;i<=n;++i)
+        sum=sum+nums[i];
+    for(int i=1;i<=n;++i)
+    {
+        for(int j=sum;j>=nums[i];--j)
+            f[j]=(f[j] | f[j-nums[i]]);
+        // for(int j=1;j<=8;++j)
+        //     cout<<f[j]<<" ";
+        // cout<<endl;
+    }
+    for(int i=(sum+1)/2;i<=sum;++i)
+        if(f[i])
+        {
+            cout<<i<<" "<<sum-i;
+            break;
+        }
+    return 0;
+}
 ```
 
 
