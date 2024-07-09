@@ -1,4 +1,4 @@
-## 套题1（PJU）
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/268e32bc-7f7c-4504-8b57-4a0ce9a1f3c1)## 套题1（PJU）
 
 ### 1. 有趣的跳跃
 ![image](https://github.com/SaMMyCHoo/-/assets/116826455/fbbd50fe-da1d-4e6b-9c8e-b4d2676b7e42)
@@ -1188,3 +1188,52 @@ int main()
     return 0;
 }
 ```
+
+### 9.图的连通分支数
+
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/b3ebc9c1-9aa2-4819-b2ce-9fe35bb5db89)
+
+这题没啥好说的，建图dfs打标记就行，主要考察建图，注意有向无向，完事。
+
+### 10.最短路径
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/57635029-e87a-475e-9ba4-5d1d8496ea38)
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/d6520914-57e6-4e9f-84b6-ad5f764c9f00)
+
+Floyd算法经典题目，配合floyd的中间过程输出答案即可。
+```cpp
+//your code here.
+```
+
+### 10.Coindence
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/bd9d0a6c-2bb3-4d9d-b7e8-deeca84597cf)
+
+DP问题，f(i)(j)表示两个串分别考虑到i,j的最长公共序列。转移方程就很简单了，O(n^2)拿下。
+```cpp
+//your code here.
+```
+
+### 11.整除问题
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/57953395-1fb2-4a67-b78c-6971ebaca22a)
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/8bcc26eb-e6c3-4d01-99f6-b3f93779d460)
+
+```cpp
+//your code here.
+```
+
+### 12.后缀子串排序
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/aef2bca5-e5d7-4b07-a196-76a89c3e23f7)
+
+水题，直接硬排序就行，可以sort
+
+### 13.最低票价
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/92c8eb43-31e6-423c-9014-40c63cee8db0)
+
+```cpp
+//your code here.
+```
+
+### 14.正方形数组的数目
+
+
+
+
