@@ -1209,7 +1209,7 @@ int main()
 
 可以通过这个方式找到最短路径的具体点，然后再计算真正的最短路就好。
 
-来不及敲代码了，先把思路都过一遍。
+（记录最短路径的方法：在合并最短路的时候记录前驱节点）
 
 ### 10.Coindence
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/bd9d0a6c-2bb3-4d9d-b7e8-deeca84597cf)
@@ -1220,9 +1220,9 @@ DP问题，f(i)(j)表示两个串分别考虑到i,j的最长公共序列。转�
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/57953395-1fb2-4a67-b78c-6971ebaca22a)
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/8bcc26eb-e6c3-4d01-99f6-b3f93779d460)
 
-```cpp
-//your code here.
-```
+大框架是二分答案来找k。
+
+给定a,n,k后，只需要统计a里面质因子的个数，然后去n!里面找就行，是前面的那个数学题。
 
 ### 12.后缀子串排序
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/aef2bca5-e5d7-4b07-a196-76a89c3e23f7)
