@@ -1220,9 +1220,7 @@ DP问题，f(i)(j)表示两个串分别考虑到i,j的最长公共序列。转�
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/57953395-1fb2-4a67-b78c-6971ebaca22a)
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/8bcc26eb-e6c3-4d01-99f6-b3f93779d460)
 
-大框架是二分答案来找k。
-
-给定a,n,k后，只需要统计a里面质因子的个数，然后去n!里面找就行，是前面的那个数学题。
+给定a,n,k后，只需要统计a里面质因子的个数，然后去n!里面找就行，是前面的那个数学题。最后除一下找最小的那个就行。
 
 ### 12.后缀子串排序
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/aef2bca5-e5d7-4b07-a196-76a89c3e23f7)
@@ -1232,11 +1230,12 @@ DP问题，f(i)(j)表示两个串分别考虑到i,j的最长公共序列。转�
 ### 13.最低票价
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/92c8eb43-31e6-423c-9014-40c63cee8db0)
 
-```cpp
-//your code here.
-```
+dp问题。f[i]表示覆盖到第i天的最小费用。那么转移手段有3种，分别往前推1，7，30天。结束。
 
 ### 14.正方形数组的数目
+
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/ebbb8516-67b6-46bb-9e4f-afa67a613198)
+
 
 ```cpp
 //your code here.
