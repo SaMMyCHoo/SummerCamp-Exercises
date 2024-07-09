@@ -1247,13 +1247,12 @@ A最长12，直接枚举硬来就行。（注意剪枝优化搜索策略）
 ### 16.
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/7e8ec98b-6820-42be-b762-250ee216b17e)
 
+Floyd算法，但是K要倒着枚举，每一步中间结果就是一个阶段的答案，再全部加起来就能得到最终答案。
 
 ### 17.
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/8d3bc5e9-1feb-4483-aa0b-90c90ffae92c)
 
-```cpp
-//your code here.
-```
+数学题。只取决于N,M里面有没有偶数。有偶数就能回。
 
 ### 18.
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/4a7603f9-6a7d-4ea6-8532-f67e2933934a)
