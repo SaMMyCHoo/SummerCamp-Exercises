@@ -1,4 +1,4 @@
-![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/49815ff8-0175-417a-9522-d719f8d3c407)![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/268e32bc-7f7c-4504-8b57-4a0ce9a1f3c1)## 套题1（PJU）
+## 套题1（PJU）
 
 ### 1. 有趣的跳跃
 ![image](https://github.com/SaMMyCHoo/-/assets/116826455/fbbd50fe-da1d-4e6b-9c8e-b4d2676b7e42)
