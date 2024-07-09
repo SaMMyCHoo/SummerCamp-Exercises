@@ -887,8 +887,57 @@ int main()
 ### 2.平衡字符串
 ![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/0501ba72-e58a-4ffd-8e12-40818d8e1182)
 
+只会最暴力的解法，摆了
 
+### 3.最小面积子矩阵
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/e2286541-b910-49df-b8ce-63855bafcfa5)
 
+通过枚举行，从而把问题转化为一维问题。如果所有矩阵元素非负的话就可以用双指针扫一遍解决了。
+
+```cpp
+#include<cstdio>
+#include<iostream>
+using namespace std;
+const int N=105;
+int num[N][N];
+int S[N][N],now[N];
+int main()
+{
+    int n,m,k;
+    cin>>n>>m>>k;
+    int ans=n*m;
+    for(int i=1;i<=n;++i)
+        for(int j=1;j<=m;++j)
+        {
+            cin>>num[i][j];
+            S[i][j]=S[i-1][j]+num[i][j];
+        }
+    for(int i=1;i<=n;++i)
+        for(int j=i;j<=n;++j)
+        {
+            for(int r=1;r<=m;++r)
+                now[r]=S[j][r]-S[i-1][r];
+            int ls=1,rs=1;
+            int sum=now[1],res=m+1;
+            while(ls<=rs&&rs<=m)
+            {
+                while(sum<k&&rs<m)  
+                    sum+=now[++rs];
+                while(sum>=k&&ls<=rs)
+                {
+                    res=min(res,rs-ls+1);
+                    sum-=now[ls++];
+                }
+                if(sum<k&&rs==m)
+                    break;
+            }
+            if(res<=m)
+                ans=min(ans,(j-i+1)*res);
+        }
+    cout<<ans;
+    return 0;
+}
+```
 
 
 
