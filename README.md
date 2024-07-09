@@ -938,7 +938,14 @@ int main()
     return 0;
 }
 ```
+### 4.
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/976f16ec-3385-4534-8537-bb04e8a596d4)
 
+如果数据范围不大的话转化为背包问题就可以，用f(n)来表示是否可以用数组中的元素凑出n这个数。
+
+当然，这个题有一点恶心的地方是，需要手动检查输入是否合法。由于C++无法像python那样先读进来再检查类型，因此我们只能先全部以string的形式读入，然后再想办法处理。
+```cpp
+```
 
 
 
