@@ -1021,4 +1021,17 @@ int main()
 
 （由于数据大小固定了6*6，感觉暴力dfs似乎也可以搞定）
 
+### 7.取中值
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/2b548076-9038-4b18-b206-fd438b987406)
+
+模拟+排序，略
+
+### 8.Prime Number
+![image](https://github.com/SaMMyCHoo/SummerCamp-Exercises/assets/116826455/6582e5bc-1980-4236-aac8-dbb63fb68b17)
+
+正好复习一下质数的筛法。（虽然我估计直接暴力找/打表就可以）
+
+```cpp
+```
+
 最小生成树，最短路
