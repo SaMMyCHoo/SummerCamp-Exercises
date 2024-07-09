@@ -1158,6 +1158,33 @@ int main()
 正好复习一下质数的筛法。（虽然我估计直接暴力找/打表就可以）
 
 ```cpp
+#include<cstdio>
+#include<iostream>
+using namespace std;
+const int N=5e6+5;
+bool noprime[N];
+int cnt,primes[100005];
+int main()
+{
+    int k;
+    cin>>k;
+    int n=N;
+    for(int i=2;i<=n;++i)
+    {
+        if(cnt>=k)
+            break;
+        if(!noprime[i])
+        {
+            primes[++cnt]=i;
+            // cout<<i<<endl;
+            for(int j=i+i;j<=n;j+=i)
+                noprime[j]=1;
+        }
+    }
+    // for(int i=1;i<=cnt;++i)
+    //     cout<<primes[i]<<endl;
+    // cout<<k<<endl;
+    cout<<primes[k];
+    return 0;
+}
 ```
-
-最小生成树，最短路
