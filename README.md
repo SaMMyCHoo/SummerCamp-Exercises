@@ -1020,6 +1020,131 @@ int main()
 正确的思路是把一个点劈成4份，再根据不同的状态转移规则连边建图，最后用最短路算法来完成。
 
 ```cpp
+#include<cstdio>
+#include<iostream>
+#include<queue>
+#include<cstring>
+using namespace std;
+const int N=1e4;
+int input[10][10];
+struct Edge
+{
+    int v, w;
+    Edge(int x=0, int y=0)
+    {
+        v=x;
+        w=y;
+    }
+}E[N];
+int lst, fst[N], nxt[N];
+void adde(int x,int y,int z)
+{
+    E[++lst]=Edge(y,z);
+    nxt[lst]=fst[x];
+    fst[x]=lst;
+}
+int dx[4]={1,0,-1,0};
+int dy[4]={0,1,0,-1};
+
+struct node
+{
+    int n;
+    int dis;
+    node(int nn=0,int ddis=0)
+    {
+        n=nn;
+        dis=ddis;
+    }
+};
+
+bool operator<(const node &x, const node &y)
+{
+    return x.dis>y.dis;
+}
+
+priority_queue<node> heap;
+
+int dis[N];
+bool inqueue[N];
+void dijkstra(int ss)
+{
+    dis[ss]=0;
+    heap.push(node(ss,0));
+    while(!heap.empty())
+    {
+        node ttmp=heap.top();
+        heap.pop();
+        int nn=ttmp.n;
+        int ddis=ttmp.dis;
+        if(inqueue[nn])
+            continue;
+        dis[nn]=ddis;
+        inqueue[nn]=1;
+        for(int i=fst[nn];i;i=nxt[i])
+        {
+            int v=E[i].v;
+            int w=E[i].w;
+            // cout<<v<<" "<<w<<endl;
+            if(!inqueue[v])
+                if(dis[v]>dis[nn]+w)  
+                {
+                    dis[v]=dis[nn]+w;
+                    heap.push(node(v,dis[v]));
+                }
+        }
+    }
+}
+int main()
+{
+    memset(dis,0x3f,sizeof(dis));
+    for(int i=1;i<=6;++i)
+        for(int j=1;j<=6;++j)
+            cin>>input[i][j];
+    for(int i=1;i<=6;++i)
+        for(int j=1;j<=6;++j)
+        {
+            //当前点：i,j，对应id：i*6-6+j
+            int now=i*6+j-6;
+            for(int s=1;s<=4;++s)
+            {
+                //图上编号：now*4-4+s
+                int tmp=now*4-4+s;
+                for(int k=0;k<4;++k)
+                {
+                    int nx=i+dx[k],ny=j+dy[k];
+                    if(nx>0&&nx<=6&&ny>0&&ny<=6)
+                    {
+                        //对方id
+                        int to=nx*6-6+ny;
+                        int cost=s*input[nx][ny];
+                        //计算目标状态
+                        int ns=cost%4+1;
+                        //对方点在图里的编号
+                        int pmt=to*4-4+ns;
+                        adde(tmp,pmt,cost);
+                    }
+                }
+            }
+        }
+    
+    //图建好后根据出发点跑dijkstra即可。
+    int sx,sy,tx,ty;
+    cin>>sx>>sy>>tx>>ty;
+    sx++;
+    sy++;
+    tx++;
+    ty++;
+    int ss=(sx*6-6+sy)*4-3;
+    int tt=tx*6-6+ty;
+    dijkstra(ss);
+    // for(int i=1;i<=144;++i)
+    //     cout<<i<<" "<<dis[i]<<endl;
+    int ans=dis[tt*4-4+1];
+    for(int i=2;i<=4;++i)
+        ans=min(ans,dis[tt*4-4+i]);
+    cout<<ans;
+    return 0;
+}
 ```
 
 ### 7.取中值
